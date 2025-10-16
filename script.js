@@ -117,6 +117,7 @@ document.getElementById("creditForm").addEventListener("submit", function (e) {
     totalConIntereses = saldoFinanciar;
   }
   const totalParcela = abonoFinal + totalConIntereses;
+  const porcentajePieDisplay = (!isNaN(porcentajePie) ? porcentajePie.toFixed(2) + '%' : '—');
   const formatCLP = (num) => {
     // Formato CLP con espacio entre $ y el valor
     let clp = new Intl.NumberFormat('es-CL', { style: 'currency', currency: 'CLP', minimumFractionDigits: 0 }).format(num);
@@ -136,9 +137,9 @@ document.getElementById("creditForm").addEventListener("submit", function (e) {
       </div>
     </div>
     <table>
-         <tr><th>Concepto</th><th style="border-right:2px solid #185a9d;">CLP</th><th>UF</th></tr>
-         <tr><td>Valor Parcela</td><td><span class="resumen-valor-clp"><span class="simbolo">$</span>${valorParcela.toLocaleString('es-CL')}</span></td><td><span class="resumen-valor-uf"><span class="simbolo-uf">UF</span>${valorUF ? (valorParcela/valorUF).toLocaleString('es-CL', {minimumFractionDigits:2, maximumFractionDigits:2}) : '—'}</span></td></tr>
-         <tr><td>Abono o Pie</td><td><span class="resumen-valor-clp"><span class="simbolo">$</span>${abonoFinal.toLocaleString('es-CL')}</span></td><td><span class="resumen-valor-uf"><span class="simbolo-uf">UF</span>${valorUF ? (abonoFinal/valorUF).toLocaleString('es-CL', {minimumFractionDigits:2, maximumFractionDigits:2}) : '—'}</span></td></tr>
+      <tr><th>Concepto</th><th style="border-right:2px solid #185a9d;">CLP</th><th>UF</th></tr>
+      <tr><td>Valor Parcela</td><td><span class="resumen-valor-clp"><span class="simbolo">$</span>${valorParcela.toLocaleString('es-CL')}</span></td><td><span class="resumen-valor-uf"><span class="simbolo-uf">UF</span>${valorUF ? (valorParcela/valorUF).toLocaleString('es-CL', {minimumFractionDigits:2, maximumFractionDigits:2}) : '—'}</span></td></tr>
+      <tr><td>Abono o Pie ${porcentajePieDisplay}</td><td><span class="resumen-valor-clp"><span class="simbolo">$</span>${abonoFinal.toLocaleString('es-CL')}</span></td><td><span class="resumen-valor-uf"><span class="simbolo-uf">UF</span>${valorUF ? (abonoFinal/valorUF).toLocaleString('es-CL', {minimumFractionDigits:2, maximumFractionDigits:2}) : '—'}</span></td></tr>
          <tr><td>Saldo a Financiar</td><td><span class="resumen-valor-clp"><span class="simbolo">$</span>${saldoFinanciar.toLocaleString('es-CL')}</span></td><td><span class="resumen-valor-uf"><span class="simbolo-uf">UF</span>${valorUF ? (saldoFinanciar/valorUF).toLocaleString('es-CL', {minimumFractionDigits:2, maximumFractionDigits:2}) : '—'}</span></td></tr>
          <tr><td>Número de Cuotas</td><td>${cuotas}</td><td>—</td></tr>
          <tr><td>Valor Cuota</td><td><span class="resumen-valor-clp"><span class="simbolo">$</span>${Math.round(valorCuota).toLocaleString('es-CL')}</span></td><td><span class="resumen-valor-uf"><span class="simbolo-uf">UF</span>${valorUF ? (valorCuota/valorUF).toLocaleString('es-CL', {minimumFractionDigits:2, maximumFractionDigits:2}) : '—'}</span></td></tr>
@@ -166,4 +167,3 @@ document.getElementById("btnLimpiar").addEventListener("click", function () {
   document.getElementById('nombreCliente').value = '';
   document.getElementById('numeroParcela').value = '';
 });
-
